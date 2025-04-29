@@ -2,13 +2,16 @@ import sys
 sys.dont_write_bytecode = True
 
 import smtplib
+from datetime import datetime
 from email.mime.text import MIMEText
 from email.mime.multipart import MIMEMultipart
 from config import EMAIL_ADDRESS, EMAIL_PASSWORD, SMTP_SERVER, SMTP_PORT, RECIPIENT_EMAIL
 
 def format_email_body(summaries):
-    body = "<h2>Hey Lauren! 👋</h2>"
-    body += "<p>Here are today's top news summaries for you:</p>"
+    today = datetime.now().strftime("%A, %B %d, %Y")
+    
+    body = f"<h2>Hey Lauren! 👋</h2>"
+    body += f"<p>Here's your news for {today}:</p>"
     
     for idx, (title, summary, url) in enumerate(summaries, 1):
         body += f"<p><b>{idx}. {title}</b><br>{summary}<br>"
