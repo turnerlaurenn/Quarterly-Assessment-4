@@ -1,17 +1,21 @@
+import sys
+sys.dont_write_bytecode = True
 
-import os
 from dotenv import load_dotenv
+import os
 
-# Load environment variables from .env file
+# Load environment variables from .env
 load_dotenv()
 
-# Get API keys from environment variables
-NEWS_API_KEY = os.getenv("NEWS_API_KEY")
-OPENAI_API_KEY = os.getenv("OPENAI_API_KEY")
+# News API Key
+NEWS_API_KEY = os.getenv('NEWS_API_KEY')
 
-# Optionally, you can raise an error if keys are missing
-if not NEWS_API_KEY:
-    raise ValueError("No NEWS_API_KEY found. Please add it to your .env file.")
+# OpenAI API Key
+OPENAI_API_KEY = os.getenv('OPENAI_API_KEY')
 
-if not OPENAI_API_KEY:
-    raise ValueError("No OPENAI_API_KEY found. Please add it to your .env file.")
+# Email Settings
+EMAIL_ADDRESS = os.getenv('EMAIL_ADDRESS')
+EMAIL_PASSWORD = os.getenv('EMAIL_PASSWORD')
+SMTP_SERVER = os.getenv('SMTP_SERVER')
+SMTP_PORT = int(os.getenv('SMTP_PORT'))  # Important: convert port to int
+RECIPIENT_EMAIL = os.getenv('RECIPIENT_EMAIL')
