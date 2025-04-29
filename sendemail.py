@@ -10,13 +10,17 @@ from config import EMAIL_ADDRESS, EMAIL_PASSWORD, SMTP_SERVER, SMTP_PORT, RECIPI
 def format_email_body(summaries):
     today = datetime.now().strftime("%A, %B %d, %Y")
     
+    # Greeting and intro
     body = f"<h2>Hey Lauren! 👋</h2>"
     body += f"<p>Here's your news for {today}:</p>"
     
+    # Loop through summaries and include a 'read more' link
     for idx, (title, summary, url) in enumerate(summaries, 1):
         body += f"<p><b>{idx}. {title}</b><br>{summary}<br>"
-        body += f"<a href='{url}'>Read full article here</a></p>"
+        body += f"<a href='{url}'>To read more, click here</a></p>"  # Custom message with link
+        body += "<hr>"  # Adds a horizontal line for visual separation
     
+    # Closing message
     body += "<p>Have an amazing day! 🌟</p>"
     return body
 
@@ -29,7 +33,7 @@ def send_newsletter(summaries):
 
     # Format the body using HTML
     body = format_email_body(summaries)
-    msg.attach(MIMEText(body, 'html'))  # <<< Note: now sending as 'html' instead of 'plain'
+    msg.attach(MIMEText(body, 'html'))  # Sending as 'html' instead of 'plain'
 
     # Send the email
     try:
