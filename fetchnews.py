@@ -1,3 +1,5 @@
+import sys
+sys.dont_write_bytecode = True
 
 import requests
 from config import NEWS_API_KEY
