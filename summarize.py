@@ -40,11 +40,4 @@ def summarize_article(title, content):
     except Exception as e:
         print(f"Error summarizing article: {e}")
         return "Summary unavailable."
-
-# --- Test section ---
-if __name__ == "__main__":
-    test_title = "NASA Discovers New Exoplanet"
-    test_content = "NASA scientists have discovered a new Earth-like planet located 300 light years away. The planet is believed to have conditions suitable for life, including the presence of water and a stable atmosphere. Researchers are excited about the potential for future study."
-
-    summary = summarize_article(test_title, test_content)
-    print("SUMMARY:\n", summary)
+    
