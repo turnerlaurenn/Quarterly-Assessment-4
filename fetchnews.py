@@ -7,9 +7,9 @@ from config import NEWS_API_KEY
 def fetch_articles():
     url = 'https://newsapi.org/v2/top-headlines'
     params = {
-        'sources': 'bbc-news',  # Or 'reuters', etc.
+        'sources': 'bbc-news',  # or 'reuters', 'the-wall-street-journal'
         'apiKey': NEWS_API_KEY,
-        'pageSize': 5,  # Number of articles you want
+        'pageSize': 5,
     }
 
     try:
@@ -25,12 +25,12 @@ def fetch_articles():
             url = article['url']
             description = article.get('description', '')
 
-            # If no full content, just use description + URL
-            content = description if description else url
+            # 🛠 Tiny Upgrade: combine everything into one text block
+            combined_content = f"Title: {title}\nDescription: {description}\nURL: {url}"
 
             fetched_articles.append({
                 'title': title,
-                'content': content
+                'content': combined_content
             })
 
             # Debugging print
