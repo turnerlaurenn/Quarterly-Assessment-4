@@ -7,9 +7,14 @@ from email.mime.multipart import MIMEMultipart
 from config import EMAIL_ADDRESS, EMAIL_PASSWORD, SMTP_SERVER, SMTP_PORT, RECIPIENT_EMAIL
 
 def format_email_body(summaries):
-    body = "<h2>📰 Today's Top News Summaries</h2>"
-    for idx, (title, summary) in enumerate(summaries, 1):
-        body += f"<p><b>{idx}. {title}</b><br>{summary}</p>"
+    body = "<h2>Hey Lauren! 👋</h2>"
+    body += "<p>Here are today's top news summaries for you:</p>"
+    
+    for idx, (title, summary, url) in enumerate(summaries, 1):
+        body += f"<p><b>{idx}. {title}</b><br>{summary}<br>"
+        body += f"<a href='{url}'>Read full article here</a></p>"
+    
+    body += "<p>Have an amazing day! 🌟</p>"
     return body
 
 def send_newsletter(summaries):
