@@ -3,6 +3,7 @@ sys.dont_write_bytecode = True
 
 from fetchnews import fetch_articles
 from summarize import summarize_article
+from sendemail import send_newsletter
 
 def main():
     print("Fetching articles...")
@@ -29,6 +30,9 @@ def main():
         print(f"Title: {title}\n")
         print(f"Summary: {summary}\n")
         print("----------------------\n")
+
+    print("Sending email...")
+    send_newsletter(summarized_articles)
 
 if __name__ == "__main__":
     main()
