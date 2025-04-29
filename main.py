@@ -1,0 +1,34 @@
+import sys
+sys.dont_write_bytecode = True
+
+from fetchnews import fetch_articles
+from summarize import summarize_article
+
+def main():
+    print("Fetching articles...")
+    articles = fetch_articles()
+
+    if not articles:
+        print("No articles fetched.")
+        return
+
+    print(f"Fetched {len(articles)} articles.")
+    print("\nSummarizing articles...\n")
+
+    summarized_articles = []
+    for article in articles:
+        title = article['title']
+        content = article['content']
+        
+        summary = summarize_article(title, content)
+        summarized_articles.append((title, summary))
+
+    # Print the summaries
+    for idx, (title, summary) in enumerate(summarized_articles, 1):
+        print(f"--- Article {idx} ---")
+        print(f"Title: {title}\n")
+        print(f"Summary: {summary}\n")
+        print("----------------------\n")
+
+if __name__ == "__main__":
+    main()
