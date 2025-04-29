@@ -20,9 +20,10 @@ def main():
     for article in articles:
         title = article['title']
         content = article['content']
+        url = article['url']
         
         summary = summarize_article(title, content)
-        summarized_articles.append((title, summary))
+        summarized_articles.append((title, summary, url))
 
     # Print the summaries
     for idx, (title, summary) in enumerate(summarized_articles, 1):
